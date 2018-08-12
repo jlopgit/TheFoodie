@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>The Foodie</title>
+
+    <!--Bootstrap 4 stylesheet-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <!--Font Awesome Brand Icons-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--StyleSheet-->
+    <link rel="stylesheet" type="text/css" href="styleSheet.css" media="screen"/>
+  </head>
+
+  <body>
+
+    <div class = "header container-fluid">
+       <nav class = "navbar navbar-light fixed-top">
+
+          <button class = "navbar-toggler" type = "button" data-toggle = "collapse" aria-expanded = "false"
+          data-target = "#links" aria-controls = "links" aria-label="Toggle navigation">
+            <div class = "wholeBurger">
+              <div class = "burger top"></div>
+              <div class = "burger middle"></div>
+              <div class = "burger bottom"></div>
+            </div>
+          </button>
+
+          <div class = "collapse navbar-collapse" id = "links">
+           <h2 class = "title container">Preface</h2>
+
+           <ul class = "navbar-nav">
+            <li class = "nav-item container">
+              <a class = "nav-link" href= "#">Home</a>
+            </li>
+            <li class = "nav-item container">
+              <a class = "nav-link dropdown-toggle" href= "#" data-toggle = "collapse" aria-expanded = "false"
+              data-target = "#projectLinks" aria-controls = "projectLinks">Projects</a>
+              <ul class = "collapse projects-toggle" id = "projectLinks">
+                <li class = "nav-item">
+                  <a class = "nav-link" href= "#">The Foodie</a>
+                </li>
+                <li class = "nav-item">
+                  <a class = "nav-link" href= "#">Authentication</a>
+                </li>
+                <li class = "nav-item">
+                  <a class = "nav-link" href= "#">3</a>
+                </li>
+              </ul>
+            </li>
+            <li class = "nav-item container">
+              <a class = "nav-link" href= "#">Get in Touch</a>
+            </li>
+           </ul>
+
+           <div class = "icons container d-flex flex-row">
+            <a class = "p-2 ml-auto" href = "https://github.com/panggoy123">
+              <i class = "fa fa-git-square fa-2x"></i>
+            </a>
+            <a class = "p-2 mr-auto" href = "https://linkedin.com/in/jlopezworkfil">
+              <i class = "fa fa-linkedin-square fa-2x"></i>
+            </a>
+           </div>
+        </div>
+
+       </nav>
+    </div>
+
+    <div class = "d-flex justify-content-center" id = "description">
+      <div class = "jumbotron text-center">
+        <h2>The Foodie</h2>
+        <p>Tell me what you ate! I'd like to be able to try it!</p>
+        <hr>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newFoodEntry">
+          New Entry
+        </button>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="newFoodEntry" tabindex="-1" role="dialog" aria-labelledby="modalEntry" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalEntry">Tell Me What You Ate!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form id = "selection">
+              <div class = "form-check form-check-inline">
+                <input class = "form-check-input" type = "radio" name = "food" id = "cook"
+                value = "cook" onclick = "showAteIn();" checked>
+                <label class = "form-check-label" for = "cook">Did You Cook?</label>
+              </div>
+              <div class = "form-check form-check-inline">
+                <input class = "form-check-input" type = "radio" name = "food" id = "out"
+                value = "out" onclick="showAteOut();">
+                <label class = "form-check-label" for = "out">Did You Eat Out?</label>
+              </div>
+            </form>
+            <hr>
+            <form id = "ateIn">
+              <div class = "form-group">
+                <label for = "dishIn">What did you eat?</label>
+                <input class = "form-control" type = "text" id = "dish" placeholder = "Name of dish">
+              </div>
+              <div class = "form-group">
+                <label for = "time">How long did it take to cook?</label>
+                <input class = "form-control" type = "text" id = "time" placeholder = "Cook Time">
+              </div>
+              <div class = "form-group">
+                <label for = "ingredients">What what did you put in it?</label>
+                <input class = "form-control" type = "text" id = "ingredients" placeholder = "Ingredients">
+              </div>
+              <div class = "form-group">
+                <label for = "cost">How much were the ingredients?</label>
+                <input class = "form-control" type = text id = "cost" placeholder = "Total Cost">
+              </div>
+              <div class = "form-group">
+                <label for = "instructions">How how did you cook it?</label>
+                <textarea class = "form-control" type = "text" id = "instructions" rows = "5">
+                </textarea>
+              </div>
+            </form>
+
+            <form id = "ateOut">
+              <div class = "form-group">
+                <label for = "location">Where did you eat?</label>
+                <input class = "form-control" type = text id = "location" placeholder = "Enter location or find location">
+              </div>
+              <div class = "form-group">
+                <label for = "price">What's the price range for the meal?</label>
+                <input class = "form-control" type = text id = "price" placeholder = "Price">
+              </div>
+              <div class = "form-group">
+                <label for = "dishOut">What did you eat?</label>
+                <input class = "form-control" type = text id = "dishOut" placeholder = "Name of Dish">
+              </div>
+              <div class = "form-group">
+                <label for = "description">How was it?</label>
+                <textarea class = "form-control" type = text id = "description" rows = "5">
+                </textarea>
+              </div>
+
+            </form>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showAteIn(){
+
+        document.getElementById('ateIn').style.display = 'block';
+        document.getElementById('ateOut').style.display = 'none';
+      }
+
+      function showAteOut(){
+
+        document.getElementById('ateOut').style.display = 'block';
+        document.getElementById('ateIn').style.display = 'none';
+      }
+    </script>
+
+  </body>
+
+</html>

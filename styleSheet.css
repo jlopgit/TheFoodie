@@ -1,0 +1,117 @@
+body, html{
+
+		background-image: url("./photos/img5.jpg");
+		height: 100%;
+		background-position: center;
+	  background-repeat: no-repeat;
+	  background-size: cover;
+}
+
+.navbar{
+
+	background: transparent;
+	width: 20%;
+}
+
+.navbar-collapse{
+
+	background: white;
+	box-shadow: 0 4px 8px 0 gray;
+}
+
+.title{
+
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.icons{
+
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.icons a{
+
+	color: black !important;
+}
+
+.projects-toggle{
+
+	list-style-type: none;
+}
+
+.navbar-toggler{
+
+	background-color: white;
+	border-color: black !important;
+	border-bottom-width: 2px;
+	border-right-width: 2px;
+	margin-bottom: 15px;
+	margin-top: 10px;
+	height: 40px;
+	-webkit-transition-duration: 0.2s; /*change button color at hover*/
+	transition-duration: 0.2s;
+}
+
+.navbar-toggler:hover{
+
+	background-color: #e7e7e7; /*change to light gray*/
+}
+
+.burger{
+
+	height: 2px;
+	width: 24px;
+	background-color: black;
+	margin-top: 4px;
+	margin-bottom: 4px;
+	-webkit-transition: all 50ms;
+	transition: all 50ms;
+}
+
+.navbar-toggler[aria-expanded = "true"] .top{
+	margin-top: 0px; /*so the X is centered in the box*/
+	position: absolute;
+	-ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.navbar-toggler[aria-expanded = "true"] .middle{
+	margin-top: 0px; /*so the X is centered in the box*/
+	position: absolute;
+	-ms-transform: rotate(135deg);
+	-webkit-transform: rotate(135deg);
+	transform: rotate(135deg);
+}
+
+.navbar-toggler[aria-expanded = "true"] .bottom{
+
+	visibility: hidden;
+}
+
+#description{
+
+  padding-top: 50px;
+}
+
+#ateOut{
+
+  display: none;
+}
+
+@media (max-width: 768px) {
+
+	.navbar{
+		width: 35%;
+	}
+}
+
+@media (max-width: 414px) {
+
+	.navbar{
+
+		width: 60%;
+	}
+}
