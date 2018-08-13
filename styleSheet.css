@@ -1,10 +1,13 @@
 body, html{
 
-		background-image: url("./photos/img5.jpg");
-		height: 100%;
-		background-position: center;
-	  background-repeat: no-repeat;
-	  background-size: cover;
+	height: 100%;
+	/*
+	background-image: url("./photos/img5.jpg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;*/
+
+	background-color: #FFA07A;
 }
 
 .navbar{
@@ -70,7 +73,7 @@ body, html{
 	transition: all 50ms;
 }
 
-.navbar-toggler[aria-expanded = "true"] .top{
+.navbar-toggler[aria-expanded = "true"] #top{
 	margin-top: 0px; /*so the X is centered in the box*/
 	position: absolute;
 	-ms-transform: rotate(45deg);
@@ -78,7 +81,7 @@ body, html{
 	transform: rotate(45deg);
 }
 
-.navbar-toggler[aria-expanded = "true"] .middle{
+.navbar-toggler[aria-expanded = "true"] #middle{
 	margin-top: 0px; /*so the X is centered in the box*/
 	position: absolute;
 	-ms-transform: rotate(135deg);
@@ -86,17 +89,51 @@ body, html{
 	transform: rotate(135deg);
 }
 
-.navbar-toggler[aria-expanded = "true"] .bottom{
+.navbar-toggler[aria-expanded = "true"] #bottom{
 
 	visibility: hidden;
 }
 
-#description{
+#intro{
+
+	padding-top: 100px;
+}
+
+#intro .jumbotron{
+
+	padding: 30px;
+	background: white;
+	box-shadow: 0 4px 8px 0 gray;
+}
+
+#intro .jumbotron #portrait{
+
+	width: 200px;
+	border-radius: 20%;
+}
+
+#intro .jumbotron p{
+
+	width: 300px;
+}
+
+#intro .jumbotron a{
+
+	color: black !important;
+}
+
+#foodieDescription{
 
   padding-top: 50px;
 }
 
-#ateOut{
+#foodieDescription .jumbotron{
+
+	background: white;
+	padding: 30px;
+}
+
+.modal #ateOut{
 
   display: none;
 }
@@ -113,5 +150,18 @@ body, html{
 	.navbar{
 
 		width: 60%;
+	}
+
+	#intro{
+
+		padding-top: 70px;
+		margin-left: 20px;
+		margin-right: 20px;
+	}
+
+	#intro .jumbotron #portrait{
+
+		width: 130px;
+		border-radius: 20%;
 	}
 }
