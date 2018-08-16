@@ -77,13 +77,12 @@
 
        </nav>
     </div>
-    
+
     <div class = "d-flex justify-content-center" id = "foodieDescription">
       <div class = "jumbotron text-center">
         <h2>The Foodie</h2>
         <p>Tell me what you ate! I'd like to be able to try it!</p>
         <hr>
-
         <!-- Button trigger modal -->
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newFoodEntry">
           New Entry
@@ -118,6 +117,10 @@
             </form>
             <hr>
             <form id = "ateIn">
+              <div class = "form-group" id = "images">
+                <label>Upload Photo(s)</label>
+                <input type="file" name="img" accept = "image/*" multiple>
+              </div>
               <div class = "form-group">
                 <label for = "dishIn">What did you eat?</label>
                 <input class = "form-control" type = "text" id = "dish" placeholder = "Name of dish">
@@ -126,8 +129,9 @@
                 <label for = "time">How long did it take to cook?</label>
                 <input class = "form-control" type = "text" id = "time" placeholder = "Cook Time">
               </div>
-              <div class = "form-group">
-                <label for = "ingredients">What what did you put in it?</label>
+              <div class = "form-group" id = "dishIngredients">
+                <label for = "ingredients">What what did you put in it?
+                </label>
                 <input class = "form-control" type = "text" id = "ingredients" placeholder = "Ingredients">
               </div>
               <div class = "form-group">
@@ -150,7 +154,7 @@
                 <label for = "price">What's the price range for the meal?</label>
                 <input class = "form-control" type = text id = "price" placeholder = "Price">
               </div>
-              <div class = "form-group">
+              <div class = "form-group" id = "dishes">
                 <label for = "dishOut">What did you eat?</label>
                 <input class = "form-control" type = text id = "dishOut" placeholder = "Name of Dish">
               </div>
@@ -164,7 +168,7 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="newEntry();">Close</button>
             <button type="button" class="btn btn-primary">Save changes</button>
           </div>
 
@@ -172,7 +176,13 @@
       </div>
     </div>
 
+    <div id = "entries">
+
+    </div>
+
     <script>
+
+      var count = 0;
       function showAteIn(){
 
         document.getElementById('ateIn').style.display = 'block';
@@ -183,6 +193,38 @@
 
         document.getElementById('ateOut').style.display = 'block';
         document.getElementById('ateIn').style.display = 'none';
+      }
+
+      /*
+      function addPhoto(){
+
+        var node = document.createElement("input");
+        node.type = "file";
+        node.name = "pic";
+        node.accept = "image/*"
+        document.getElementById("images").appendChild(node);
+      }
+
+      $(document).ready(function(){
+
+        $('#add').click(function(){
+
+          $('#newFoodEntry').modal('handleUpdate');
+        });
+
+      });
+      */
+
+      function newEntry(){
+
+        count++;
+
+        var node = document.createElement("div");
+        var content = document.createTextNode(count);
+        node.appendChild(content);
+        node.className = "jumbotron";
+        //document.getElementById("entries").appendChild(node);
+        document.getElementById("entries").prepend(node);
       }
     </script>
 
