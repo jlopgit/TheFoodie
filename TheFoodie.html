@@ -43,14 +43,14 @@
 
            <ul class = "navbar-nav">
             <li class = "nav-item container">
-              <a class = "nav-link" href= "#">Home</a>
+              <a class = "nav-link" href= "index.html">Home</a>
             </li>
             <li class = "nav-item container">
               <a class = "nav-link dropdown-toggle" href= "#" data-toggle = "collapse" aria-expanded = "false"
               data-target = "#projectLinks" aria-controls = "projectLinks">Projects</a>
               <ul class = "collapse projects-toggle" id = "projectLinks">
                 <li class = "nav-item">
-                  <a class = "nav-link" href= "#">The Foodie</a>
+                  <a class = "nav-link" href= "TheFoodie.html">The Foodie</a>
                 </li>
                 <li class = "nav-item">
                   <a class = "nav-link" href= "#">Authentication</a>
@@ -118,12 +118,12 @@
             <hr>
             <form id = "ateIn">
               <div class = "form-group" id = "images">
-                <label>Upload Photo(s)</label>
-                <input type="file" name="img" accept = "image/*" multiple>
+                <label for = "photos">Upload Photo(s)</label>
+                <input id = "photos" type="file" name="img" accept = "image/*" multiple>
               </div>
               <div class = "form-group">
                 <label for = "dishIn">What did you eat?</label>
-                <input class = "form-control" type = "text" id = "dish" placeholder = "Name of dish">
+                <input class = "form-control" type = "text" id = "dishIn" placeholder = "Name of dish">
               </div>
               <div class = "form-group">
                 <label for = "time">How long did it take to cook?</label>
@@ -146,6 +146,10 @@
             </form>
 
             <form id = "ateOut">
+              <div class = "form-group" id = "images">
+                <label for = "photos">Upload Photo(s)</label>
+                <input id = "photos" type="file" name="img" accept = "image/*" multiple>
+              </div>
               <div class = "form-group">
                 <label for = "location">Where did you eat?</label>
                 <input class = "form-control" type = text id = "location" placeholder = "Enter location or find location">
