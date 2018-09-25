@@ -97,12 +97,13 @@
 
           <div class="modal-header">
             <h5 class="modal-title" id="modalEntry">Tell Me What You Ate!</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="clearForms();">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
 
           <div class="modal-body">
+
             <form id = "selection">
               <div class = "form-check form-check-inline">
                 <input class = "form-check-input" type = "radio" name = "food" id = "cook"
@@ -116,77 +117,80 @@
               </div>
             </form>
             <hr>
-            <form id = "ateIn">
+            <form id = "ateIn" name = "in">
               <div class = "form-group" id = "images">
-                <label for = "photos">Upload Photo(s)</label>
-                <input id = "photos" type="file" name="img" accept = "image/*" multiple>
+                <label for = "photosIn">Upload Photo(s)</label>
+                <input id = "photosIn" type="file" name="ateInImg" accept = "image/*" multiple>
               </div>
               <div class = "form-group">
                 <label for = "dishIn">What did you eat?</label>
-                <input class = "form-control" type = "text" id = "dishIn" placeholder = "Name of dish">
+                <input class = "form-control" type = "text" id = "dishIn" name = "ateInDish" placeholder = "Name of dish">
               </div>
               <div class = "form-group">
                 <label for = "time">How long did it take to cook?</label>
-                <input class = "form-control" type = "text" id = "time" placeholder = "Cook Time">
+                <input class = "form-control" type = "text" id = "time" name = "ateInTime" placeholder = "Cook Time">
               </div>
               <div class = "form-group" id = "dishIngredients">
                 <label for = "ingredients">What what did you put in it?
                 </label>
-                <input class = "form-control" type = "text" id = "ingredients" placeholder = "Ingredients">
+                <input class = "form-control" type = "text" id = "ingredients" name = "ateInIngredients" placeholder = "Ingredients">
               </div>
               <div class = "form-group">
                 <label for = "cost">How much were the ingredients?</label>
-                <input class = "form-control" type = text id = "cost" placeholder = "Total Cost">
+                <input class = "form-control" type = text id = "cost" name = "ateInCost" placeholder = "Total Cost">
               </div>
               <div class = "form-group">
                 <label for = "instructions">How how did you cook it?</label>
-                <textarea class = "form-control" type = "text" id = "instructions" rows = "5">
-                </textarea>
+                <textarea class = "form-control" type = "text" id = "instructions" name = "ateInInstructions" rows = "5"></textarea>
               </div>
+              <!--
+              <button type = "submit" class = "btn btn-primary" data-dismiss = "modal">Submit</button>
+              -->
             </form>
 
-            <form id = "ateOut">
+            <form id = "ateOut" name = "out">
               <div class = "form-group" id = "images">
-                <label for = "photos">Upload Photo(s)</label>
-                <input id = "photos" type="file" name="img" accept = "image/*" multiple>
+                <label for = "photosOut">Upload Photo(s)</label>
+                <input id = "photosOut" type="file" name="ateOutImg" accept = "image/*" multiple>
               </div>
               <div class = "form-group">
                 <label for = "location">Where did you eat?</label>
-                <input class = "form-control" type = text id = "location" placeholder = "Enter location or find location">
+                <input class = "form-control" type = text id = "location" name = "ateOutLocation" placeholder = "Enter location or find location">
               </div>
               <div class = "form-group">
                 <label for = "price">What's the price range for the meal?</label>
-                <input class = "form-control" type = text id = "price" placeholder = "Price">
+                <input class = "form-control" type = text id = "price" name = "ateOutPrice" placeholder = "Price">
               </div>
               <div class = "form-group" id = "dishes">
                 <label for = "dishOut">What did you eat?</label>
-                <input class = "form-control" type = text id = "dishOut" placeholder = "Name of Dish">
+                <input class = "form-control" type = text id = "dishOut" name = "ateOutDish" placeholder = "Name of Dish">
               </div>
               <div class = "form-group">
                 <label for = "description">How was it?</label>
-                <textarea class = "form-control" type = text id = "description" rows = "5">
-                </textarea>
+                <textarea class = "form-control" type = text id = "description" name = "ateOutDescription" rows = "5"></textarea>
               </div>
-
+              <!--
+              <button type = "submit" class = "btn btn-primary">Submit</button>
+              -->
             </form>
+
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="newEntry();">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearForms();">Close</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick = "getFood(); clearForms();">Save changes</button>
           </div>
 
         </div>
       </div>
     </div>
 
-    <div id = "entries">
+    <div class = "d-flex flex-column justify-content-center" id = "entries">
 
     </div>
 
     <script>
 
-      var count = 0;
       function showAteIn(){
 
         document.getElementById('ateIn').style.display = 'block';
@@ -199,37 +203,88 @@
         document.getElementById('ateIn').style.display = 'none';
       }
 
-      /*
-      function addPhoto(){
+      function clearForms(){
 
-        var node = document.createElement("input");
-        node.type = "file";
-        node.name = "pic";
-        node.accept = "image/*"
-        document.getElementById("images").appendChild(node);
+          document.getElementById('ateIn').reset();
+          document.getElementById('ateOut').reset();
       }
 
-      $(document).ready(function(){
+      function getFood(){
 
-        $('#add').click(function(){
+        var xhttp = new XMLHttpRequest();
 
-          $('#newFoodEntry').modal('handleUpdate');
-        });
+        xhttp.open("POST", "/create_food", true);
+        xhttp.send();
+      }
 
-      });
-      */
+      /*
+      var dish;
+      var time;
+      var ingredients;
+      var description;
+      var price;
+      var location;
+      var photo;
 
-      function newEntry(){
+      var formInput = [];
+      var formNodes = [];
 
-        count++;
+      function newAteInEntry(){
+
+        //photo = document.getElementById('photos').value;
+        dish = document.getElementById('dishIn').value;
+        time = document.getElementById('time').value;
+        ingredients = document.getElementById('ingredients').value;
+        price = document.getElementById('cost').value;
+        description = document.getElementById('instructions').value;
+
+        var dishContent = document.createTextNode(dish);
+        var timeContent = document.createTextNode(time)
+        var ingredientsContent = document.createTextNode(ingredients);
+        var priceContent = document.createTextNode(price);
+        var descriptionContent = document.createTextNode(description);
+
+        var dishNode = document.createElement("p");
+        var timeNode = document.createElement("p");
+        var ingredientsNode = document.createElement("p");
+        var priceNode = document.createElement("p");
+        var descriptionNode = document.createElement("p");
+
+        dishNode.appendChild(dishContent);
+        timeNode.appendChild(timeContent);
+        ingredientsNode.appendChild(ingredientsContent);
+        priceNode.appendChild(priceContent);
+        descriptionNode.appendChild(descriptionContent);
 
         var node = document.createElement("div");
-        var content = document.createTextNode(count);
-        node.appendChild(content);
         node.className = "jumbotron";
-        //document.getElementById("entries").appendChild(node);
+        node.appendChild(dishNode);
+        node.appendChild(timeNode);
+        node.appendChild(ingredientsNode);
+        node.appendChild(priceNode);
+        node.appendChild(descriptionNode);
         document.getElementById("entries").prepend(node);
+
+        dish, time, ingredients, price, description = "";
       }
+      */
+
+
+      /*
+      getFood(){
+
+        var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              var javaObj = JSON.parse(this.responseText);
+              document.getElementById("entries").innerHTML = javaObj.id;
+            }
+          };
+          xhttp.open("GET", "food.json", true);
+          xhttp.send();
+      }
+      */
+
     </script>
 
   </body>
