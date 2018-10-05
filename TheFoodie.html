@@ -106,13 +106,13 @@
 
             <form id = "selection">
               <div class = "form-check form-check-inline">
-                <input class = "form-check-input" type = "radio" name = "food" id = "cook"
-                value = "cook" onclick = "showAteIn();" checked>
+                <input class = "form-check-input" type = "radio" name = "foodIn" id = "cookIn"
+                value = "cookIn" onclick = "showAteIn();" checked>
                 <label class = "form-check-label" for = "cook">Did You Cook?</label>
               </div>
               <div class = "form-check form-check-inline">
-                <input class = "form-check-input" type = "radio" name = "food" id = "out"
-                value = "out" onclick="showAteOut();">
+                <input class = "form-check-input" type = "radio" name = "foodOut" id = "eatOut"
+                value = "eatOut" onclick="showAteOut();">
                 <label class = "form-check-label" for = "out">Did You Eat Out?</label>
               </div>
             </form>
@@ -143,9 +143,9 @@
                 <label for = "instructions">How how did you cook it?</label>
                 <textarea class = "form-control" type = "text" id = "instructions" name = "ateInInstructions" rows = "5"></textarea>
               </div>
-              <!--
-              <button type = "submit" class = "btn btn-primary" data-dismiss = "modal">Submit</button>
-              -->
+
+              <button type = "submit" class = "btn btn-primary" data-dismiss = "modal" onclick="newAteInEntry(); clearForms(); return false;">Submit</button>
+
             </form>
 
             <form id = "ateOut" name = "out">
@@ -154,8 +154,12 @@
                 <input id = "photosOut" type="file" name="ateOutImg" accept = "image/*" multiple>
               </div>
               <div class = "form-group">
-                <label for = "location">Where did you eat?</label>
-                <input class = "form-control" type = text id = "location" name = "ateOutLocation" placeholder = "Enter location or find location">
+                <label for = "location">What's the name of the restaurant?</label>
+                <input class = "form-control" type = text id = "restaurant" name = "ateOutRestaurant" placeholder = "Name">
+              </div>
+              <div class = "form-group">
+                <label for = "location">Where is it?</label>
+                <input class = "form-control" type = text id = "location" name = "ateOutLocation" placeholder = "Where">
               </div>
               <div class = "form-group">
                 <label for = "price">What's the price range for the meal?</label>
@@ -169,123 +173,27 @@
                 <label for = "description">How was it?</label>
                 <textarea class = "form-control" type = text id = "description" name = "ateOutDescription" rows = "5"></textarea>
               </div>
-              <!--
-              <button type = "submit" class = "btn btn-primary">Submit</button>
-              -->
+
+              <button type = "submit" class = "btn btn-primary" data-dismiss = "modal" onclick="newAteOutEntry(); clearForms(); return false;">Submit</button>
+
             </form>
 
           </div>
 
+          <!--
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="clearForms();">Close</button>
-            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick = "getFood(); clearForms();">Save changes</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick = "newAteInEntry(); clearForms();">Save changes</button>
           </div>
+          -->
 
         </div>
       </div>
     </div>
 
-    <div class = "d-flex flex-column justify-content-center" id = "entries">
+    <div class = "d-flex flex-column justify-content-center" id = "entries"></div>
 
-    </div>
-
-    <script>
-
-      function showAteIn(){
-
-        document.getElementById('ateIn').style.display = 'block';
-        document.getElementById('ateOut').style.display = 'none';
-      }
-
-      function showAteOut(){
-
-        document.getElementById('ateOut').style.display = 'block';
-        document.getElementById('ateIn').style.display = 'none';
-      }
-
-      function clearForms(){
-
-          document.getElementById('ateIn').reset();
-          document.getElementById('ateOut').reset();
-      }
-
-      function getFood(){
-
-        var xhttp = new XMLHttpRequest();
-
-        xhttp.open("POST", "/create_food", true);
-        xhttp.send();
-      }
-
-      /*
-      var dish;
-      var time;
-      var ingredients;
-      var description;
-      var price;
-      var location;
-      var photo;
-
-      var formInput = [];
-      var formNodes = [];
-
-      function newAteInEntry(){
-
-        //photo = document.getElementById('photos').value;
-        dish = document.getElementById('dishIn').value;
-        time = document.getElementById('time').value;
-        ingredients = document.getElementById('ingredients').value;
-        price = document.getElementById('cost').value;
-        description = document.getElementById('instructions').value;
-
-        var dishContent = document.createTextNode(dish);
-        var timeContent = document.createTextNode(time)
-        var ingredientsContent = document.createTextNode(ingredients);
-        var priceContent = document.createTextNode(price);
-        var descriptionContent = document.createTextNode(description);
-
-        var dishNode = document.createElement("p");
-        var timeNode = document.createElement("p");
-        var ingredientsNode = document.createElement("p");
-        var priceNode = document.createElement("p");
-        var descriptionNode = document.createElement("p");
-
-        dishNode.appendChild(dishContent);
-        timeNode.appendChild(timeContent);
-        ingredientsNode.appendChild(ingredientsContent);
-        priceNode.appendChild(priceContent);
-        descriptionNode.appendChild(descriptionContent);
-
-        var node = document.createElement("div");
-        node.className = "jumbotron";
-        node.appendChild(dishNode);
-        node.appendChild(timeNode);
-        node.appendChild(ingredientsNode);
-        node.appendChild(priceNode);
-        node.appendChild(descriptionNode);
-        document.getElementById("entries").prepend(node);
-
-        dish, time, ingredients, price, description = "";
-      }
-      */
-
-
-      /*
-      getFood(){
-
-        var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              var javaObj = JSON.parse(this.responseText);
-              document.getElementById("entries").innerHTML = javaObj.id;
-            }
-          };
-          xhttp.open("GET", "food.json", true);
-          xhttp.send();
-      }
-      */
-
-    </script>
+    <script src = "/script.js"></script>
 
   </body>
 
