@@ -23,6 +23,46 @@ app.get("/", function(req,res){
 	res.sendFile(__dirname + "/TheFoodie.html");
 });
 
+app.get("/getDB", function(req, res){
+
+	var MYJSON;
+
+	//console log all database contents
+	MongoClient.connect(dbURL, function(err, db) {
+		if (err) throw err;
+
+		var dbo = db.db("foodie");
+
+		dbo.collection("food").find({}).toArray(function(err, result) {
+			if (err) throw err;
+			MYJSON = JSON.stringify(result);
+			res.json(MYJSON)
+			db.close();
+		});
+
+	});
+});
+
+app.post("/getDB", function(req, res){
+
+	var MYJSON;
+
+	//console log all database contents
+	MongoClient.connect(dbURL, function(err, db) {
+		if (err) throw err;
+
+		var dbo = db.db("foodie");
+
+		dbo.collection("food").find({}).toArray(function(err, result) {
+			if (err) throw err;
+			MYJSON = JSON.stringify(result);
+			res.json(MYJSON)
+			db.close();
+		});
+
+	});
+});
+
 app.post("/create_food", function(req, res){
 //somehow json sent from the body is converted into a javascript Obj.
 
@@ -47,23 +87,6 @@ app.post("/create_food", function(req, res){
 			db.close();
 		});
 	});
-
-
-	//console log all database contents
-	MongoClient.connect(dbURL, function(err, db) {
-		if (err) throw err;
-
-		var dbo = db.db("foodie");
-
-		dbo.collection("food").find({}).toArray(function(err, result) {
-			if (err) throw err;
-			console.log(result);
-			db.close();
-		});
-
-	});
-
-
 	res.end();
 });
 
