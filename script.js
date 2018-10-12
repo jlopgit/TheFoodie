@@ -29,7 +29,7 @@
           instructions: document.getElementById('instructions').value
         }
 
-        getFood(obj);
+        sendFood(obj);
       }
 
       function newAteOutEntry(){
@@ -44,19 +44,10 @@
           description: document.getElementById('description').value
         }
 
-        getFood(obj);
+        sendFood(obj);
       }
 
-      function getFood(foodObj){
-
-        /*var i = 0;
-        var text = "";
-
-        for(i in foodObj){
-          text += foodObj[i] + " ";
-        }
-
-        alert(text);*/
+      function sendFood(foodObj){
 
         var myJSON = JSON.stringify(foodObj);
 
@@ -67,24 +58,50 @@
         xhttp.open("POST", "/create_food", true);
         //used application/json because i'm sending json.
         //otherwise use x-www-form-urlencoded
-        xhttp.setRequestHeader("Content-Type", "application/json");
+        xhttp.setRequestHeader("Content-type", "application/json");
         xhttp.send(myJSON);
       }
 
-
-      function retrieveDB(){
+      function retrieveFood(){
 
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("entries").innerHTML =
-                this.responseText;
+      
+                //alert(this.responseText); //this works if responseType is not specified.
+                alert(this.response);
+                createNode(this.response);
            }
         };
+        //this makes sure that the response from the server is JSON.
+        xhttp.responseType = "json";
         xhttp.open("POST", "/getDB", true);
         xhttp.send();
       }
 
+      function createNode(DBresult){
+
+        var obj = JSON.parse(DBresult);
+
+        var text = "";
+
+        var i = 0;
+
+        for(i in obj){
+
+          text += "entry " + i + '\n'
+
+          for(var j = 0 in obj[i]){
+            text += obj[i][j] + '\n';
+          }
+
+          text += '\n';
+        }
+
+
+        alert(text);
+
+      }
 
       /*
       var dish;
@@ -135,21 +152,5 @@
         document.getElementById("entries").prepend(node);
 
         dish, time, ingredients, price, description = "";
-      }
-      */
-
-
-      /*
-      getFood(){
-
-        var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              var javaObj = JSON.parse(this.responseText);
-              document.getElementById("entries").innerHTML = javaObj.id;
-            }
-          };
-          xhttp.open("GET", "food.json", true);
-          xhttp.send();
       }
       */

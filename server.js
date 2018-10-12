@@ -23,6 +23,26 @@ app.get("/", function(req,res){
 	res.sendFile(__dirname + "/TheFoodie.html");
 });
 
+app.get("/deleteAllDB", function(req, res){
+
+	MongoClient.connect(dbURL, function(err, db){
+		if(err) throw err;
+
+		var dbo = db.db("foodie");
+
+		dbo.collection("food").deleteMany(function(err, obj){
+			if(err) throw err;
+
+			console.log(obj.result.n + " deleted");
+
+			db.close
+		});
+
+	});
+
+	res.end();
+});
+
 app.get("/getDB", function(req, res){
 
 	var MYJSON;
@@ -56,6 +76,8 @@ app.post("/getDB", function(req, res){
 		dbo.collection("food").find({}).toArray(function(err, result) {
 			if (err) throw err;
 			MYJSON = JSON.stringify(result);
+			console.log("sending back a json!")
+			console.log(MYJSON);
 			res.json(MYJSON)
 			db.close();
 		});
@@ -67,7 +89,7 @@ app.post("/create_food", function(req, res){
 //somehow json sent from the body is converted into a javascript Obj.
 
 	console.log("post req received");
-
+	console.log("received a JavaScript Object!")
 	console.log(req.body);
 
 	MongoClient.connect(dbURL, function(err, db){
