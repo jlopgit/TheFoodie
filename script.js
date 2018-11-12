@@ -21,6 +21,7 @@
 
         var obj = {
 
+          //file: document.getElementById('photosIn'),
           type: document.getElementById('ateIn').name,
           dish: document.getElementById('dishIn').value,
           time: document.getElementById('time').value,
@@ -36,6 +37,7 @@
 
         var obj = {
 
+          //file: document.getElementById('photosOut'),
           type: document.getElementById('ateOut').name,
           restaurant: document.getElementById('restaurant').value,
           location: document.getElementById('location').value,
@@ -67,7 +69,7 @@
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
-      
+
                 //alert(this.responseText); //this works if responseType is not specified.
                 alert(this.response);
                 createNode(this.response);
@@ -90,67 +92,72 @@
         for(i in obj){
 
           text += "entry " + i + '\n'
-
           for(var j = 0 in obj[i]){
             text += obj[i][j] + '\n';
           }
-
           text += '\n';
+
+          if(obj[i].type == "in"){
+
+            var dish = document.createTextNode(obj[i].dish);
+            var time = document.createTextNode(obj[i].time);
+            var ingredients = document.createTextNode(obj[i].ingredients);
+            var cost = document.createTextNode(obj[i].cost);
+            var instructions = document.createTextNode(obj[i].instructions);
+
+            var dishNode = document.createElement("p");
+            var timeNode = document.createElement("p");
+            var ingredientsNode = document.createElement("p");
+            var costNode = document.createElement("p");
+            var instructionsNode = document.createElement("p");
+
+            dishNode.appendChild(dish);
+            timeNode.appendChild(time);
+            ingredientsNode.appendChild(ingredients);
+            costNode.appendChild(cost);
+            instructionsNode.appendChild(instructions);
+
+            var node = document.createElement("div");
+            node.className = "jumbotron";
+            node.appendChild(dishNode);
+            node.appendChild(timeNode);
+            node.appendChild(ingredientsNode);
+            node.appendChild(costNode);
+            node.appendChild(instructionsNode);
+            document.getElementById("entries").append(node);
+          }
+
+          if(obj[i].type == "out"){
+
+            var restaurant = document.createTextNode(obj[i].restaurant);
+            var location = document.createTextNode(obj[i].location);
+            var price = document.createTextNode(obj[i].price);
+            var dish = document.createTextNode(obj[i].dish);
+            var description = document.createTextNode(obj[i].description);
+
+            var restaurantNode = document.createElement("p");
+            var locationNode = document.createElement("p");
+            var priceNode = document.createElement("p");
+            var dishNode = document.createElement("p");
+            var descriptionNode = document.createElement("p");
+
+            restaurantNode.appendChild(restaurant);
+            locationNode.appendChild(location);
+            priceNode.appendChild(price);
+            dishNode.appendChild(dish);
+            descriptionNode.appendChild(description);
+
+            var node = document.createElement("div");
+            node.className = "jumbotron";
+            node.appendChild(restaurantNode);
+            node.appendChild(locationNode);
+            node.appendChild(priceNode);
+            node.appendChild(dishNode);
+            node.appendChild(descriptionNode);
+            document.getElementById("entries").append(node);
+          }
+
         }
 
-
         alert(text);
-
       }
-
-      /*
-      var dish;
-      var time;
-      var ingredients;
-      var description;
-      var price;
-      var location;
-      var photo;
-
-      var formInput = [];
-      var formNodes = [];
-
-      function newAteInEntry(){
-
-        //photo = document.getElementById('photos').value;
-        dish = document.getElementById('dishIn').value;
-        time = document.getElementById('time').value;
-        ingredients = document.getElementById('ingredients').value;
-        price = document.getElementById('cost').value;
-        description = document.getElementById('instructions').value;
-
-        var dishContent = document.createTextNode(dish);
-        var timeContent = document.createTextNode(time);
-        var ingredientsContent = document.createTextNode(ingredients);
-        var priceContent = document.createTextNode(price);
-        var descriptionContent = document.createTextNode(description);
-
-        var dishNode = document.createElement("p");
-        var timeNode = document.createElement("p");
-        var ingredientsNode = document.createElement("p");
-        var priceNode = document.createElement("p");
-        var descriptionNode = document.createElement("p");
-
-        dishNode.appendChild(dishContent);
-        timeNode.appendChild(timeContent);
-        ingredientsNode.appendChild(ingredientsContent);
-        priceNode.appendChild(priceContent);
-        descriptionNode.appendChild(descriptionContent);
-
-        var node = document.createElement("div");
-        node.className = "jumbotron";
-        node.appendChild(dishNode);
-        node.appendChild(timeNode);
-        node.appendChild(ingredientsNode);
-        node.appendChild(priceNode);
-        node.appendChild(descriptionNode);
-        document.getElementById("entries").prepend(node);
-
-        dish, time, ingredients, price, description = "";
-      }
-      */
